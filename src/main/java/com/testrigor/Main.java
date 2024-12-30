@@ -32,6 +32,38 @@ public class Main {
 	 * @return
 	 */
 	public static String findCriminal(Map<String, String> criminals, String possibleName) {
-		return null;
+		if (possibleName == null || possibleName.trim().isEmpty()) {
+			return "No match";
+		}
+
+		String[] possibleNames = possibleName.split(" ");
+		String criminal = null;
+		int maxCount = 0;
+
+		for (Map.Entry<String, String> entry : criminals.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
+			int count = 0;
+
+			for (String name : possibleNames) {
+				if (key.contains(name)) {
+					count++;
+				}
+
+				if (value != null && value.contains(name)) {
+					count++;
+				}
+			}
+
+			if (count > maxCount) {
+				maxCount = count;
+				criminal = key;
+			} else if (count == maxCount && criminal != null && criminal.compareTo(key) > 0) {
+				criminal = key;
+			}
+
+		}
+
+		return criminal != null ? criminal : "No match";
 	}
 }

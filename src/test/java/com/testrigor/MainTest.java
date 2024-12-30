@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainTest {
+public class MainTest {
     @Test
     void testFindCriminal() {
         Map<String, String> criminals = new HashMap<>();
